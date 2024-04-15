@@ -10,6 +10,7 @@ from numpy.linalg import norm
 from sklearn.neighbors import NearestNeighbors
 from PIL import Image
 
+
 feature_list=np.array(pickle.load(open('featurevector.pkl','rb')))
 filenames=np.array(pickle.load(open('filenames.pkl','rb')))
 
@@ -40,7 +41,6 @@ def preprocess_img(img,model):
 def recommend(features,feature_list):
     neighbors=NearestNeighbors(n_neighbors=6,algorithm='brute',metric='euclidean')
     neighbors.fit(feature_list)
-
     distance,indices=neighbors.kneighbors([features])
 
     return indices
